@@ -7,7 +7,7 @@
  
   - name: Solicitar Token
     uri:
-      url: https://tower.centralus.cloudapp.azure.com/api/v2/tokens/
+      url: https://{{ tower_url }}/api/v2/tokens/
       method: POST
       user: "{{ tower_user }}"
       password: "{{ tower_pw }}"
@@ -28,7 +28,7 @@
 
   - name: Llamar Ping Workflow Job via API
     uri:
-      url: https://tower.centralus.cloudapp.azure.com/api/v2/workflow_job_templates/{{ tower_workflow_job_id }}/launch/
+      url: https://{{ tower_url }}/{{ tower_workflow_job_id }}/launch/
       method: POST
       headers:
        content-type: application/json
@@ -38,7 +38,7 @@
 
   - name: Eliminar Token
     uri:
-      url: https://tower.centralus.cloudapp.azure.com/api/v2/tokens/{{ mytokenid }}/
+      url: https://{{ tower_url }}/api/v2/tokens/{{ mytokenid }}/
       method: DELETE
       headers:
        authorization: Bearer {{ mytoken }}
