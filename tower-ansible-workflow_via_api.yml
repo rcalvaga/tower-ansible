@@ -1,5 +1,5 @@
 ---
-- name: Llamar a Workflow Ping via API
+- name: Llamar a Workflow via API
   hosts: localhost
   connection: local
 
