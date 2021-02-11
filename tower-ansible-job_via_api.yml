@@ -28,7 +28,7 @@
 
   - name: Call Job Job via API
     uri:
-      url: https://{{ TOWER_HOST }}/{{ TOWER_JOB_ID }}/launch/
+      url: https://{{ TOWER_HOST }}/api/v2/job_templates/{{ TOWER_JOB_ID }}/launch/
       method: POST
       headers:
        content-type: application/json
