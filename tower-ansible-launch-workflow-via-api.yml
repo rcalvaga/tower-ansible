@@ -1,0 +1,16 @@
+---
+- name: Launch Workflow via API
+  hosts: localhost
+  connection: local
+
+  tasks: 
+
+  - name: Launch Workflow Job via API
+    uri:
+      url: https://{{ tower_url }}/api/v2/workflow_job_templates/{{ tower_workflow_job_id }}/launch/
+      method: POST
+      headers:
+       content-type: application/json
+       authorization: Bearer {{ mytoken }}
+      validate_certs: False
+      status_code: 201
