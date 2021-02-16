@@ -4,28 +4,7 @@
   connection: local
 
   tasks: 
- 
-  - name: Get Token
-    uri:
-      url: https://{{ tower_url }}/api/v2/tokens/
-      method: POST
-      user: "{{ tower_user }}"
-      password: "{{ tower_pw }}"
-      headers:
-       content-type: application/json
-      body_format: json
-      body: '{ "description": "My Access Token", "application": 1, "scope": "write" }'
-      force_basic_auth: yes
-      validate_certs: False
-      status_code: 201
-    register: token
-    
-  - name: Set Token Var
-    set_fact: mytoken={{ token.json.token }}
-    
-  - name: Set Token ID
-    set_fact: mytokenid={{ token.json.id }}
-
+  
   - name: Call Job Job via API
     uri:
       url: https://{{ tower_url }}/api/v2/job_templates/{{ tower_job_id }}/launch/
@@ -35,12 +14,3 @@
        authorization: Bearer {{ mytoken }}
       validate_certs: False
       status_code: 201
-
-  - name: Eliminar Token
-    uri:
-      url: https://{{ tower_url }}/api/v2/tokens/{{ mytokenid }}/
-      method: DELETE
-      headers:
-       authorization: Bearer {{ mytoken }}
-      validate_certs: False
-      status_code: 204
