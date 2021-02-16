@@ -7,7 +7,7 @@
 
   - name: Delete Token
     uri:
-      url: https://{{ TOWER_HOST }}/api/v2/tokens/{{ mytokenid }}/
+      url: https://{{ tower_url }}/api/v2/tokens/{{ mytokenid }}/
       method: DELETE
       headers:
        authorization: Bearer {{ mytoken }}
