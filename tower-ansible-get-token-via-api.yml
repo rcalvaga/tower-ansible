@@ -1,0 +1,27 @@
+---
+- name: Get Ansible Tower Token via API
+  hosts: localhost
+  connection: local
+
+  tasks: 
+ 
+  - name: Get Token
+    uri:
+      url: https://{{ TOWER_HOST }}/api/v2/tokens/
+      method: POST
+      user: "{{ TOWER_USERNAME }}"
+      password: "{{ TOWER_PASSWORD }}"
+      headers:
+       content-type: application/json
+      body_format: json
+      body: '{ "description": "My Access Token", "application": 1, "scope": "write" }'
+      force_basic_auth: yes
+      validate_certs: False
+      status_code: 201
+    register: token
+    
+  - name: Set Token and Token ID
+    set_stats: 
+      data:
+        mytoken={{ token.json.token }}
+        mytokenid={{ token.json.id }}
