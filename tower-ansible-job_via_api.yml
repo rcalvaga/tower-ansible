@@ -7,10 +7,10 @@
  
   - name: Get Token
     uri:
-      url: https://{{ TOWER_HOST }}/api/v2/tokens/
+      url: https://{{ tower_url }}/api/v2/tokens/
       method: POST
-      user: "{{ TOWER_USERNAME }}"
-      password: "{{ TOWER_PASSWORD }}"
+      user: "{{ tower_user }}"
+      password: "{{ tower_pw }}"
       headers:
        content-type: application/json
       body_format: json
@@ -28,7 +28,7 @@
 
   - name: Call Job Job via API
     uri:
-      url: https://{{ TOWER_HOST }}/api/v2/job_templates/{{ TOWER_JOB_ID }}/launch/
+      url: https://{{ tower_url }}/api/v2/job_templates/{{ tower_job_id }}/launch/
       method: POST
       headers:
        content-type: application/json
@@ -38,7 +38,7 @@
 
   - name: Eliminar Token
     uri:
-      url: https://{{ TOWER_HOST }}/api/v2/tokens/{{ mytokenid }}/
+      url: https://{{ tower_url }}/api/v2/tokens/{{ mytokenid }}/
       method: DELETE
       headers:
        authorization: Bearer {{ mytoken }}
