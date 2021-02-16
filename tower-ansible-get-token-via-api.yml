@@ -23,5 +23,5 @@
   - name: Set Token and Token ID
     set_stats: 
       data:
-        mytoken={{ token.json.token }}
-        mytokenid={{ token.json.id }}
+        mytoken: "{{ token.json.token }}"
+        mytokenid: "{{ token.json.id }}"
