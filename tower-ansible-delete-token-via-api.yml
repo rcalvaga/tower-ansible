@@ -1,0 +1,15 @@
+---
+- name: Delete Ansible Tower Token via API
+  hosts: localhost
+  connection: local
+
+  tasks: 
+
+  - name: Delete Token
+    uri:
+      url: https://{{ TOWER_HOST }}/api/v2/tokens/{{ mytokenid }}/
+      method: DELETE
+      headers:
+       authorization: Bearer {{ mytoken }}
+      validate_certs: False
+      status_code: 204
